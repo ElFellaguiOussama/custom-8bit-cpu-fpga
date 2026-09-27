@@ -12,45 +12,27 @@ initial begin
     end
 end
 initial begin
-// 1. add 1
-    mem[8'h01] = 8'h01; // ADD opcode
-    mem[8'h02] = 8'h01; // operand = 1
+// 1. add 3
+    mem[8'h01] = 8'h01; // ADD opcode (1)
+    mem[8'h02] = 8'h03; // operand = 3
 
-    // 2. out to address 1
-    mem[8'h03] = 8'h05; // OUT opcode
-    mem[8'h04] = 8'h01; // address = 1
+    // --- LOOP START (Address 0x03) ---
+    // 2. sub 1
+    mem[8'h03] = 8'h02; // SUB opcode (2)
+    mem[8'h04] = 8'h01; // operand = 1
 
-    // 3. clean
-    mem[8'h05] = 8'h06; // CLEAN opcode
-    mem[8'h06] = 8'h00; // operand = 0
+    // 3. jnz to address 0x03
+    mem[8'h05] = 8'h0F; // JNZ opcode (15 / hex 0F)
+    mem[8'h06] = 8'h03; // target address = 0x03 (loops back to SUB)
+    // --- LOOP END ---
 
-    // 4. add 10
-    mem[8'h07] = 8'h01; // ADD opcode
-    mem[8'h08] = 8'h0A; // operand = 10 (hex 0A)
+    // 4. out to address 5 (runs when accumulator hits 0)
+    mem[8'h07] = 8'h05; // OUT opcode (5)
+    mem[8'h08] = 8'h05; // target RAM address = 5
 
-    // 5. out to address 2
-    mem[8'h09] = 8'h05; // OUT opcode
-    mem[8'h0A] = 8'h02; // address = 2
-
-    // 6. clean
-    mem[8'h0B] = 8'h06; // CLEAN opcode
-    mem[8'h0C] = 8'h00; // operand = 0
-
-    // 7. add address 1
-    mem[8'h0D] = 8'h0B; // ADD_MEM opcode (11)
-    mem[8'h0E] = 8'h01; // source address = 1
-
-    // 8. add address 2
-    mem[8'h0F] = 8'h0B; // ADD_MEM opcode (11)
-    mem[8'h10] = 8'h02; // source address = 2
-
-    // 9. out to address 3
-    mem[8'h11] = 8'h05; // OUT opcode
-    mem[8'h12] = 8'h03; // address = 3
-
-    // 10. clean
-    mem[8'h13] = 8'h06; // CLEAN opcode
-    mem[8'h14] = 8'h00; // operand = 0
+    // 5. clean
+    mem[8'h09] = 8'h06; // CLEAN opcode (6)
+    mem[8'h0A] = 8'h00; // operand = 0
 end
 
 always @(*) begin

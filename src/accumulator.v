@@ -21,7 +21,7 @@ localparam AND = 4'd7;
 localparam OR = 4'd8;
 localparam NOT = 4'd9;
 
-assign zero_flag = (result == 0);
+assign zero_flag = (data == 0) ? 1 : 0;
 
 always @(posedge clk ) begin
     we_ram <= 0;
