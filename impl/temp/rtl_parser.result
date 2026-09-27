@@ -1,0 +1,114 @@
+[
+    {
+        "InstFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/top.v",
+        "InstLine": 1,
+        "InstName": "cpu_top",
+        "ModuleFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/top.v",
+        "ModuleLine": 1,
+        "ModuleName": "cpu_top",
+        "SubInsts": [
+            {
+                "InstFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/top.v",
+                "InstLine": 7,
+                "InstName": "clkdiv",
+                "ModuleFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/gowin_clkdiv/gowin_clkdiv.v",
+                "ModuleLine": 11,
+                "ModuleName": "Gowin_CLKDIV"
+            },
+            {
+                "InstFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/top.v",
+                "InstLine": 34,
+                "InstName": "mem_bus",
+                "ModuleFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/memory_bus.v",
+                "ModuleLine": 1,
+                "ModuleName": "memory_bus",
+                "SubInsts": [
+                    {
+                        "InstFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/memory_bus.v",
+                        "InstLine": 15,
+                        "InstName": "ram_mod",
+                        "ModuleFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/ram.v",
+                        "ModuleLine": 1,
+                        "ModuleName": "ram"
+                    }
+                ]
+            },
+            {
+                "InstFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/top.v",
+                "InstLine": 43,
+                "InstName": "accu_sim",
+                "ModuleFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/accumulator.v",
+                "ModuleLine": 1,
+                "ModuleName": "accumulator"
+            },
+            {
+                "InstFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/top.v",
+                "InstLine": 53,
+                "InstName": "pc_sim",
+                "ModuleFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/prog_cntr.v",
+                "ModuleLine": 1,
+                "ModuleName": "prog_cntr"
+            },
+            {
+                "InstFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/top.v",
+                "InstLine": 66,
+                "InstName": "inst_rom_sim",
+                "ModuleFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/inst_rom.v",
+                "ModuleLine": 1,
+                "ModuleName": "inst_rom"
+            }
+        ]
+    },
+    {
+        "InstFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/tb_cpu.v",
+        "InstLine": 3,
+        "InstName": "tb_cpu",
+        "ModuleFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/tb_cpu.v",
+        "ModuleLine": 3,
+        "ModuleName": "tb_cpu",
+        "SubInsts": [
+            {
+                "InstFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/tb_cpu.v",
+                "InstLine": 35,
+                "InstName": "mem_bus",
+                "ModuleFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/memory_bus.v",
+                "ModuleLine": 1,
+                "ModuleName": "memory_bus",
+                "SubInsts": [
+                    {
+                        "InstFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/memory_bus.v",
+                        "InstLine": 15,
+                        "InstName": "ram_mod",
+                        "ModuleFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/ram.v",
+                        "ModuleLine": 1,
+                        "ModuleName": "ram"
+                    }
+                ]
+            },
+            {
+                "InstFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/tb_cpu.v",
+                "InstLine": 44,
+                "InstName": "accu_sim",
+                "ModuleFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/accumulator.v",
+                "ModuleLine": 1,
+                "ModuleName": "accumulator"
+            },
+            {
+                "InstFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/tb_cpu.v",
+                "InstLine": 54,
+                "InstName": "pc_sim",
+                "ModuleFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/prog_cntr.v",
+                "ModuleLine": 1,
+                "ModuleName": "prog_cntr"
+            },
+            {
+                "InstFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/tb_cpu.v",
+                "InstLine": 67,
+                "InstName": "inst_rom_sim",
+                "ModuleFile": "C:/Gowin/Gowin_V1.9.12.03_x64/IDE/bin/Documents/FPGA/Ouss_CPU/src/inst_rom.v",
+                "ModuleLine": 1,
+                "ModuleName": "inst_rom"
+            }
+        ]
+    }
+]

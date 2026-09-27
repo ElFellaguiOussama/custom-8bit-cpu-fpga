@@ -76,16 +76,15 @@ initial begin
     start_enable = 0;
     #100
     start_enable = 1;
-    @(posedge clk);
-    wait (counter == 100);
+    #1000000000
     $finish;
 end
 integer i;
 initial begin
     $dumpfile("tb_cpu.vcd");
     $dumpvars(0,tb_cpu);
-    /*for (i = 0; i < 20; i = i + 1) begin
-        $dumpvars(0, tb_cpu.ram_sim.mem[i]);
-    end*/
+    for (i = 0; i < 20; i = i + 1) begin
+        $dumpvars(0, tb_cpu.mem_bus.ram_mod.mem[i]);
+    end
 end
 endmodule

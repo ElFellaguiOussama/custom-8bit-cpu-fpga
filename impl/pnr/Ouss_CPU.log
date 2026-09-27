@@ -1,0 +1,30 @@
+Reading netlist file: "C:\Gowin\Gowin_V1.9.12.03_x64\IDE\bin\Documents\FPGA\Ouss_CPU\impl\gwsynthesis\Ouss_CPU.vg"
+Parsing netlist file "C:\Gowin\Gowin_V1.9.12.03_x64\IDE\bin\Documents\FPGA\Ouss_CPU\impl\gwsynthesis\Ouss_CPU.vg" completed
+Processing netlist completed
+Reading constraint file: "C:\Gowin\Gowin_V1.9.12.03_x64\IDE\bin\Documents\FPGA\Ouss_CPU\src\Ouss_CPU.cst"
+Physical Constraint parsed completed
+Running placement......
+[10%] Placement Phase 0 completed
+[20%] Placement Phase 1 completed
+[30%] Placement Phase 2 completed
+WARN  (TA1132) :  'clkdiv/clkdiv_inst/CLKOUT.default_gen_clk' was determined to be a clock but was not created.
+[50%] Placement Phase 3 completed
+Running routing......
+[60%] Routing Phase 0 completed
+[70%] Routing Phase 1 completed
+[80%] Routing Phase 2 completed
+[90%] Routing Phase 3 completed
+Running timing analysis......
+[95%] Timing analysis completed
+Placement and routing completed
+Bitstream generation in progress......
+Bitstream generation completed
+Running power analysis......
+[100%] Power analysis completed
+Generate file "C:\Gowin\Gowin_V1.9.12.03_x64\IDE\bin\Documents\FPGA\Ouss_CPU\impl\pnr\Ouss_CPU.power.html" completed
+Generate file "C:\Gowin\Gowin_V1.9.12.03_x64\IDE\bin\Documents\FPGA\Ouss_CPU\impl\pnr\Ouss_CPU.pin.html" completed
+Generate file "C:\Gowin\Gowin_V1.9.12.03_x64\IDE\bin\Documents\FPGA\Ouss_CPU\impl\pnr\Ouss_CPU.rpt.html" completed
+Generate file "C:\Gowin\Gowin_V1.9.12.03_x64\IDE\bin\Documents\FPGA\Ouss_CPU\impl\pnr\Ouss_CPU.rpt.txt" completed
+Generate file "C:\Gowin\Gowin_V1.9.12.03_x64\IDE\bin\Documents\FPGA\Ouss_CPU\impl\pnr\Ouss_CPU.tr.html" completed
+Sun Sep 27 20:30:35 2026
+

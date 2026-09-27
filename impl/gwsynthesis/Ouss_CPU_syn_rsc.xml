@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="cpu_top" Lut="14" T_Register="82(0)" T_Alu="16(0)" T_Lut="242(14)" T_Bsram="2(0)">
+ <SubModule name="clkdiv"/>
+ <SubModule name="mem_bus" Register="8" Lut="4" T_Register="9(8)" T_Lut="8(4)" T_Bsram="1(0)">
+  <SubModule name="ram_mod" Register="1" Lut="4" Bsram="1" T_Register="1(1)" T_Lut="4(4)" T_Bsram="1(1)"/>
+ </SubModule>
+ <SubModule name="accu_sim" Register="25" Alu="16" Lut="100" T_Register="25(25)" T_Alu="16(16)" T_Lut="100(100)"/>
+ <SubModule name="pc_sim" Register="48" Lut="120" T_Register="48(48)" T_Lut="120(120)"/>
+ <SubModule name="inst_rom_sim" Bsram="1" T_Bsram="1(1)"/>
+</Module>
