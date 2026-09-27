@@ -17,19 +17,30 @@ reg start_enable;
 wire [7:0] counter;
 wire [7:0] address_ram_from_pc;
 wire [7:0] address_ram_from_accu;
+wire [7:0] led_reg ;
 
 assign address_ram = we_ram ? address_ram_from_accu : address_ram_from_pc;
 
 
 
 
-ram ram_sim(
+/*ram ram_sim(
     .clk(clk),
     .we(we_ram),
     .addr(address_ram),
     .d_in(d_out_accu),
     .d_out(d_out_ram)
+);*/
+
+memory_bus mem_bus(
+    .clk(clk),
+    .address_mem(address_ram),
+    .data_in(d_out_accu),
+    .we(we_ram),
+    .d_out(d_out_ram),
+    .led_reg(led_reg)
 );
+
 accumulator accu_sim(
     .clk(clk),
     .op(operation),
@@ -73,8 +84,8 @@ integer i;
 initial begin
     $dumpfile("tb_cpu.vcd");
     $dumpvars(0,tb_cpu);
-    for (i = 0; i < 20; i = i + 1) begin
+    /*for (i = 0; i < 20; i = i + 1) begin
         $dumpvars(0, tb_cpu.ram_sim.mem[i]);
-    end
+    end*/
 end
 endmodule

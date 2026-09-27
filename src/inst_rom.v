@@ -13,26 +13,26 @@ initial begin
 end
 initial begin
 // 1. add 3
-    mem[8'h01] = 8'h01; // ADD opcode (1)
-    mem[8'h02] = 8'h03; // operand = 3
+    mem[8'h01] = 8'd1;
+    mem[8'h02] = 8'b00110101;
 
-    // --- LOOP START (Address 0x03) ---
-    // 2. sub 1
-    mem[8'h03] = 8'h02; // SUB opcode (2)
-    mem[8'h04] = 8'h01; // operand = 1
+    mem[8'h03] = 8'd5;
+    mem[8'h04] = 8'hFF;
 
-    // 3. jnz to address 0x03
-    mem[8'h05] = 8'h0F; // JNZ opcode (15 / hex 0F)
-    mem[8'h06] = 8'h03; // target address = 0x03 (loops back to SUB)
-    // --- LOOP END ---
+    mem[8'h05] = 8'd6;
+    mem[8'h06] = 8'd0;
 
-    // 4. out to address 5 (runs when accumulator hits 0)
-    mem[8'h07] = 8'h05; // OUT opcode (5)
-    mem[8'h08] = 8'h05; // target RAM address = 5
+    mem[8'h07] = 8'd11;
+    mem[8'h08] = 8'hff;
 
-    // 5. clean
-    mem[8'h09] = 8'h06; // CLEAN opcode (6)
-    mem[8'h0A] = 8'h00; // operand = 0
+    mem[8'h09] = 8'd3;
+    mem[8'h0A] = 8'd1;
+    mem[8'h0B] = 8'd5;
+    mem[8'h0C] = 8'hff;
+    mem[8'h0D] = 8'd15;
+    mem[8'h0E] = 8'd5;
+    /*mem[8'h0F] = 8'd15;
+    mem[8'h10] = 8'd7;*/
 end
 
 always @(*) begin
