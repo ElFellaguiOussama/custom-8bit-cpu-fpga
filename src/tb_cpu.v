@@ -3,37 +3,59 @@
 module tb_cpu();
 
 reg clk;
-wire [3:0] address;
-wire [7:0] result;
-wire [7:0] instruction_byte;
-wire [3:0] op;
-wire [7:0] num;
+wire we_ram;
+wire [7:0] address_ram;
+wire [7:0] d_out_accu;
+wire [7:0] d_out_ram;
+wire [3:0] operation;
+wire [7:0] operand;
+wire we_accu;
+wire zero_flag;
+wire [7:0] rom_out;
+wire [7:0] rom_address;
 reg start_enable;
-wire we;
 wire [7:0] counter;
+wire [7:0] address_ram_from_pc;
+wire [7:0] address_ram_from_accu;
 
-accumulator uua(
+assign address_ram = we_ram ? address_ram_from_accu : address_ram_from_pc;
+
+
+
+
+ram ram_sim(
     .clk(clk),
-    .op(op),
-    .num(num),
-    .result(result),
-    .we(we)
+    .we(we_ram),
+    .addr(address_ram),
+    .d_in(d_out_accu),
+    .d_out(d_out_ram)
 );
-
-inst_rom uub(
-    .address(address),
-    .instruction_byte(instruction_byte)
-);
-
-prog_cntr uuc(
+accumulator accu_sim(
     .clk(clk),
-    .address(address),
-    .op_code(op),
-    .operand(num),
-    .instruction_byte(instruction_byte),
+    .op(operation),
+    .num(operand),
+    .result(d_out_accu),
+    .we(we_accu),
+    .address_mem(address_ram_from_accu),
+    .zero_flag(zero_flag),
+    .we_ram(we_ram)
+);
+prog_cntr pc_sim(
+    .clk(clk),
+    .instruction_byte(rom_out),
+    .address(rom_address) ,
+    .op_code(operation),
+    .operand(operand),
     .start_enable(start_enable),
-    .we(we),
-    .counter(counter)
+    .we(we_accu),
+    .counter(counter),
+    .rom_address(address_ram_from_pc),
+    .rom_data_in(d_out_ram),
+    .zero_flag(zero_flag)
+);
+inst_rom inst_rom_sim(
+    .address(rom_address) ,
+    .instruction_byte(rom_out)
 );
 
 always #70 clk = ~clk;
@@ -44,12 +66,15 @@ initial begin
     #100
     start_enable = 1;
     @(posedge clk);
-    wait (counter == 30);
+    wait (counter == 100);
     $finish;
 end
-
+integer i;
 initial begin
     $dumpfile("tb_cpu.vcd");
     $dumpvars(0,tb_cpu);
+    for (i = 0; i < 20; i = i + 1) begin
+        $dumpvars(0, tb_cpu.ram_sim.mem[i]);
+    end
 end
 endmodule

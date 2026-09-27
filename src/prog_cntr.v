@@ -1,14 +1,15 @@
 module prog_cntr(
     input wire clk,
     input wire [7:0] instruction_byte,
-    output reg [3:0] address = 1,
+    output reg [7:0] address = 1,
     output reg [3:0] op_code = 0,
     output reg [7:0] operand,
     input wire start_enable,
     output reg we = 0,
     output reg [7:0] counter = 0,
     output reg [7:0] rom_address = 0,
-    input wire [7:0] rom_data_in
+    input wire [7:0] rom_data_in,
+    input wire zero_flag
 );
 
 reg [7:0] op ;
@@ -27,11 +28,13 @@ localparam SHIFT_LEFT = 8'd3;
 localparam SHIFT_RIGHT = 8'd4;
 localparam OUT = 8'd5;
 localparam CLEAN = 8'd6;
-localparam JUMP = 8'd7;
-localparam ADD_MEM = 8'd8;
-localparam SUB_MEM = 8'd9;
-localparam SHIFT_LEFT_MEM = 8'd10;
-localparam SHIFT_RIGHT_MEM = 8'd11;
+localparam JUMP = 8'd10;
+localparam ADD_MEM = 8'd11;
+localparam SUB_MEM = 8'd12;
+localparam SHIFT_LEFT_MEM = 8'd13;
+localparam SHIFT_RIGHT_MEM = 8'd14;
+localparam JNZ = 8'd15 ;
+localparam JZ = 8'd16 ;
 
 reg [2:0] state = 2'd0 ;
 
@@ -51,7 +54,7 @@ always @(posedge clk ) begin
             end
             exe : begin
                 counter <= counter + 8'd1;
-                if(op <= 8'd6) begin
+                if(op < 8'd7) begin
                     op_code <= (op & 4'hF);
                     operand <= num;
                     address <= address + 8'd1;
@@ -60,7 +63,7 @@ always @(posedge clk ) begin
                     op <= 0;
                     we <= 1;
                 end
-                else if(op >= 8'd7) begin
+                else if(op >= 8'd10) begin
                     case (op)
                         ADD_MEM : begin
                             state <= mem_wait;
@@ -88,6 +91,30 @@ always @(posedge clk ) begin
                             num <= 0;
                             op <= 0;
                         end
+                        JNZ : begin
+                            if (~zero_flag) begin
+                                address <= num;
+                                state <= inst_1;
+                                num <= 0;
+                                op <= 0;
+                            end
+                            else begin
+                                address <= address + 8'd1;
+                                state <= inst_1;
+                            end
+                        end
+                        JZ : begin
+                            if (zero_flag) begin
+                                address <= num;
+                                state <= inst_1;
+                                num <= 0;
+                                op <= 0;
+                            end
+                            else begin
+                                address <= address + 8'd1;
+                                state <= inst_1;
+                            end
+                        end
                         default: begin 
                             state <= inst_1;
                         end
@@ -96,16 +123,17 @@ always @(posedge clk ) begin
             end
             mem_wait : begin
                 state <= mem_exec;
-                num <= rom_data_in;
+                //num <= rom_data_in;
             end
             mem_exec : begin
                 state <= inst_1;
-                operand <= num;
+                operand <= rom_data_in;
                 op_code <= op;
                 address <= address + 8'd1;
                 num <= 0;
                 op <= 0;
                 we <= 1;
+                rom_address <= 0;
             end  
             default: begin 
                 state <= inst_1;
